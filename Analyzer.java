@@ -18,7 +18,43 @@ public class Analyzer {
 		/*
 		 * Implement this method in Part 2
 		 */
-		return null;
+		if (sentences == null || sentences.isEmpty()) {
+			return new HashMap<>();
+		}
+
+		Map<String, Integer> totalScores = new HashMap<>();
+		Map<String, Integer> wordCount = new HashMap<>();
+		Map<String, Double> wordScores = new HashMap<>();
+
+		for (Sentence sentence : sentences) {
+			int score = sentence.getScore();
+			String text = sentence.getText().toLowerCase();
+			String[] words = text.split("\\s+");
+			for (String word : words) {
+				// Ignore words that do not start with a letter
+				if (!Character.isLetter(word.charAt(0))) {
+					continue;
+				}
+				// updating totalScores
+				int currentTotalScore = totalScores.getOrDefault(word, 0);
+				int newTotalScore = currentTotalScore + score;
+				totalScores.put(word, newTotalScore);
+				// updating wordCount
+				int currentWordCount = wordCount.getOrDefault(word, 0);
+				int newWordCount = currentWordCount + 1;
+				wordCount.put(word, newWordCount);
+			}
+		}
+
+		for (Map.Entry<String, Integer> entry : totalScores.entrySet()) {
+			String word = entry.getKey();
+			int totalScore = entry.getValue();
+			int count = wordCount.get(word);
+			double wordScore = (double) totalScore / count;
+			wordScores.put(word, wordScore);
+		}
+
+		return wordScores;
 	}
 	
 	/**
