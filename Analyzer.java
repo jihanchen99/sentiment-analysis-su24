@@ -23,7 +23,7 @@ public class Analyzer {
 		}
 
 		Map<String, Integer> totalScores = new HashMap<>();
-		Map<String, Integer> wordCount = new HashMap<>();
+		Map<String, Integer> wordCounts = new HashMap<>();
 		Map<String, Double> wordScores = new HashMap<>();
 
 		for (Sentence sentence : sentences) {
@@ -40,17 +40,17 @@ public class Analyzer {
 				int newTotalScore = currentTotalScore + score;
 				totalScores.put(word, newTotalScore);
 				// updating wordCount
-				int currentWordCount = wordCount.getOrDefault(word, 0);
+				int currentWordCount = wordCounts.getOrDefault(word, 0);
 				int newWordCount = currentWordCount + 1;
-				wordCount.put(word, newWordCount);
+				wordCounts.put(word, newWordCount);
 			}
 		}
 
 		for (Map.Entry<String, Integer> entry : totalScores.entrySet()) {
 			String word = entry.getKey();
 			int totalScore = entry.getValue();
-			int count = wordCount.get(word);
-			double wordScore = (double) totalScore / count;
+			int wordCount = wordCounts.get(word);
+			double wordScore = (double) totalScore / wordCount;
 			wordScores.put(word, wordScore);
 		}
 
