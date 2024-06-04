@@ -71,7 +71,18 @@ public class Analyzer {
 		/*
 		 * Implement this method in Part 3
 		 */
-		return 0;
+		String[] parts = (sentence.toLowerCase()).split("\\s+");
+		int totalScore = 0;
+		int wordCount = 0;
+		for (String word : parts) {
+			if (!Character.isLetter(word.charAt(0))) {
+				continue;
+			}
+			wordCount += 1;
+			totalScore += wordScores.getOrDefault(word, (double) 0);
+		}
+		double sentenceScore = (double) totalScore / wordCount;
+		return sentenceScore;
 	}
 
 
