@@ -26,21 +26,21 @@ public class Reader {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Checks if a line starts with a number;
-                // Does it check if the first char is an int?
-                if (!Character.isDigit(line.charAt(0))) {
-                    continue;
-                }
-                int score = line.charAt(0);
-                // Checks if the number is out of range
-                if (score < -2 || score > 2) {
-                    continue;
-                }
-                String text = line.substring(1).trim();
-                // Checks if the text is empty
-                if (!text.isEmpty()) {
-                    Sentence sentence = new Sentence(score, text);
-                    sentences.add(sentence);
+                int spaceIndex = line.indexOf(" ");
+                if (spaceIndex > 0) {
+                    String scoreString = line.substring(0, spaceIndex);
+                    try {
+                        int score = Integer.parseInt(scoreString);
+                        if (score < -2 || score > 2) {
+                            continue;
+                        }
+                        String text = line.substring(spaceIndex + 1).trim();
+                        if (!text.isEmpty()) {
+                            Sentence sentence = new Sentence(score, text);
+                            sentences.add(sentence);
+                        }
+                    } catch (NumberFormatException e) {
+                    }
                 }
             }
         } catch (IOException e) {
