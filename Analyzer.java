@@ -81,8 +81,7 @@ public class Analyzer {
 			wordCount += 1;
 			totalScore += wordScores.getOrDefault(word, (double) 0);
 		}
-		double sentenceScore = (double) totalScore / wordCount;
-		return sentenceScore;
+        return (double) totalScore / wordCount;
 	}
 
 

@@ -1,0 +1,5 @@
+2 I like cake and could eat cake all day .
+1 I hope the dog does not eat my cake .
+-1 The weather is bad today .
+-2 This is a terrible mistake .
+0 Neutral statement here .
