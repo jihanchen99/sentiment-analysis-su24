@@ -72,7 +72,7 @@ public class Analyzer {
 		 * Implement this method in Part 3
 		 */
 		if (wordScores == null || sentence == null || sentence.trim().isEmpty()) {
-			return 0;
+			return 0.0;
 		}
 
 		String[] parts = (sentence.toLowerCase()).split("\\s+");
@@ -80,7 +80,7 @@ public class Analyzer {
 		int wordCount = 0;
 
 		for (String word : parts) {
-			if (word.isEmpty() || !Character.isLetter(word.charAt(0))) {
+			if (!Character.isLetter(word.charAt(0))) {
 				continue;
 			}
 			wordCount++;
@@ -88,7 +88,7 @@ public class Analyzer {
 		}
 
 		if (wordCount == 0) {
-			return 0;
+			return 0.0;
 		}
 
         return totalScore / wordCount;

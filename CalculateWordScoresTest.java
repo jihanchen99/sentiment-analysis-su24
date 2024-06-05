@@ -1,17 +1,9 @@
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 import java.util.*;
 
 public class CalculateWordScoresTest {
-    @Before
-    public void setUp() {
-        Set<Sentence> sentences = new HashSet<>();
-        sentences.add(new Sentence(2, "I eat cake everyday ."));
-        sentences.add(new Sentence(-1, "I like cake ."));
-    }
-
     @Test
     public void nullInputTest() {
         Set<Sentence> sentences = null;
