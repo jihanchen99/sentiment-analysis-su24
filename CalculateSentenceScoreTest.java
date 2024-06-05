@@ -61,4 +61,17 @@ public class CalculateSentenceScoreTest {
         double delta = 0.0001;
         assertEquals(expected, result, delta);
     }
+
+    @Test
+    public void emptyWordCountTest() {
+        Map<String, Double> wordScores = new HashMap<>();
+        wordScores.put("test", -1.0);
+        wordScores.put("is", 1.0);
+        wordScores.put("hard", -3.0);
+        String sentence = "333";
+        double result = Analyzer.calculateSentenceScore(wordScores, sentence);
+        double expected = 0.0;
+        double delta = 0.0001;
+        assertEquals(expected, result, delta);
+    }
 }
