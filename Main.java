@@ -29,13 +29,14 @@ public class Main {
         while (true) {
             System.out.println("Enter a sentence: ");
             String input = scanner.nextLine();
-            if ("exit".equals(input)) {
+            if ("quit".equals(input)) {
                 break;
             }
             try {
                 double sentenceScore = Analyzer.calculateSentenceScore(wordScores, input);
                 System.out.println("Sentence score: " + sentenceScore);
             } catch (Exception e) {
+                System.out.println("An error occurred while calculating sentence score.");
             }
         }
         scanner.close();

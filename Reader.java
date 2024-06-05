@@ -34,7 +34,7 @@ public class Reader {
                         if (score < -2 || score > 2) {
                             continue;
                         }
-                        String text = line.substring(spaceIndex + 1).trim();
+                        String text = line.substring(spaceIndex + 1).trim().toLowerCase();
                         if (!text.isEmpty()) {
                             Sentence sentence = new Sentence(score, text);
                             sentences.add(sentence);

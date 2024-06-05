@@ -71,17 +71,27 @@ public class Analyzer {
 		/*
 		 * Implement this method in Part 3
 		 */
+		if (wordScores == null || sentence == null || sentence.trim().isEmpty()) {
+			return 0;
+		}
+
 		String[] parts = (sentence.toLowerCase()).split("\\s+");
-		int totalScore = 0;
+		double totalScore = 0;
 		int wordCount = 0;
+
 		for (String word : parts) {
-			if (!Character.isLetter(word.charAt(0))) {
+			if (word.isEmpty() || !Character.isLetter(word.charAt(0))) {
 				continue;
 			}
-			wordCount += 1;
-			totalScore += wordScores.getOrDefault(word, (double) 0);
+			wordCount++;
+			totalScore += wordScores.getOrDefault(word, 0.0);
 		}
-        return (double) totalScore / wordCount;
+
+		if (wordCount == 0) {
+			return 0;
+		}
+
+        return totalScore / wordCount;
 	}
 
 
